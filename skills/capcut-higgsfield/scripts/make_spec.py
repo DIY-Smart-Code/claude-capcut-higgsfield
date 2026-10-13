@@ -137,7 +137,11 @@ def main():
             e = max(c[-1][2], at + 0.8)
             if i + 1 < len(caps):
                 e = min(e, caps[i + 1][0][1] - 0.02)
-            clips.append({"text": " ".join(x[0] for x in c), "at": round(at, 3), "dur": round(max(0.2, e - at), 3),
+            text = ""
+            for x in c:                      # whisper splits "25-ton" into "25" + "-ton": no space before a hyphen piece
+                glue = not text or (x[0][:1] != "" and x[0][0] in "-'") or text.endswith("-")
+                text += x[0] if glue else " " + x[0]
+            clips.append({"text": text, "at": round(at, 3), "dur": round(max(0.2, e - at), 3),
                           "style": "caption"})
         tracks.append({"type": "text", "name": "captions", "clips": clips})
     spec = {"mode": "replace", **({"effects_from": look["effects_from"]} if look.get("effects_from") else {}),
