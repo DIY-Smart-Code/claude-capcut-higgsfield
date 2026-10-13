@@ -21,6 +21,8 @@ on PATH. Run the scripts with `python` (not `py`, whose shebang lookup may pick 
   sources in `shots.json`. If you can't source it, cut it or say it as an opinion.
 - **Show the cost before spending.** Preflight with `get_cost: true` and tell the user the total (shots ×
   image cost + clips × video cost + voice). Ask before anything over their stated budget.
+- **A timeout is not a failure.** If a `generate_*` call times out or returns a gateway error, check
+  `show_generations` for the job before resubmitting; the job may exist and be charged already.
 - **Keep every take.** `hf_fetch.py` moves a replaced file into `media/rejected/` and logs it, so the ledger
   shows real retries and the real credit total.
 
