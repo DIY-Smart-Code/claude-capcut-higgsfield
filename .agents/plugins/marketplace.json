@@ -1,0 +1,22 @@
+{
+  "name": "diy-smart-code",
+  "description": "Claude plugins from DIY Smart Code.",
+  "interface": {
+    "displayName": "DIY Smart Code"
+  },
+  "plugins": [
+    {
+      "name": "capcut-higgsfield",
+      "version": "1.0.0",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Media"
+    }
+  ]
+}

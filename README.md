@@ -28,12 +28,74 @@ script + sources ─▶ style preset ─▶ voice-over ─▶ word timestamps �
 
 ## Install
 
+Find your assistant below. The marketplace is **`diy-smart-code`**, the plugin is **`capcut-higgsfield`**.
+Every assistant needs the Higgsfield MCP connected (see above); the plugin doesn't add it, because most
+people already have it as a connector and a second copy would duplicate every tool.
+
+### Claude Code
+
+```
+/plugin marketplace add DIY-Smart-Code/claude-capcut-higgsfield
+/plugin install capcut-higgsfield@diy-smart-code
+```
+
+On Claude Code 2.1.275 or later, one line does both:
+`/plugin install capcut-higgsfield --marketplace DIY-Smart-Code/claude-capcut-higgsfield`.
+Update later with `/plugin marketplace update diy-smart-code`.
+
+### Claude app (claude.ai / desktop)
+
+Zip the `skills/capcut-higgsfield` folder and upload it under **Settings → Capabilities → Skills**.
+
+### GitHub Copilot CLI
+
+```bash
+copilot plugin marketplace add DIY-Smart-Code/claude-capcut-higgsfield
+copilot plugin install capcut-higgsfield@diy-smart-code
+```
+
+Copilot reads the same `.claude-plugin/marketplace.json`.
+
+### Codex CLI
+
+```bash
+codex plugin marketplace add https://github.com/DIY-Smart-Code/claude-capcut-higgsfield
+codex plugin add capcut-higgsfield@diy-smart-code
+```
+
+Note `plugin add`, not `plugin install`. Confirm with `codex plugin list`.
+
+### Gemini CLI
+
+```bash
+gemini extensions install https://github.com/DIY-Smart-Code/claude-capcut-higgsfield
+```
+
+Run it outside Gemini's interactive mode; it takes effect on the next session. Update with
+`gemini extensions update capcut-higgsfield`.
+
+### Cursor
+
+Clone the repo and link it into Cursor's local plugin folder, then run **Developer: Reload Window**:
+
+```bash
+git clone https://github.com/DIY-Smart-Code/claude-capcut-higgsfield
+mkdir -p ~/.cursor/plugins/local
+ln -s "$PWD/claude-capcut-higgsfield" ~/.cursor/plugins/local/capcut-higgsfield
+```
+
+On Windows (PowerShell, as admin or with Developer Mode on):
+`New-Item -ItemType SymbolicLink -Path $HOME\.cursor\plugins\local\capcut-higgsfield -Target $PWD\claude-capcut-higgsfield`
+
+### Manual (any agent that loads skills)
+
 ```bash
 git clone https://github.com/DIY-Smart-Code/claude-capcut-higgsfield
 cp -r claude-capcut-higgsfield/skills/capcut-higgsfield ~/.claude/skills/
 ```
 
-On Windows (PowerShell): `Copy-Item -Recurse claude-capcut-higgsfield\skills\capcut-higgsfield $HOME\.claude\skills\`
+What the skill learns from your CapCut edits is kept in `~/.claude/capcut-higgsfield/briefing.md`, outside
+the plugin folder, so updates never wipe it.
 
 ## Use
 
@@ -44,7 +106,7 @@ Ask Claude something like:
 
 Claude shows you the script and the cost before spending credits, lets you pick the style and the voice,
 and tells you when the CapCut project is ready to open. When you change the edit in CapCut and ask it to
-reassess, it records what you changed in `briefing.md` and applies it to the next video.
+reassess, it records what you changed in your briefing (`~/.claude/capcut-higgsfield/briefing.md`) and applies it to the next video.
 
 ## What's inside
 
@@ -59,6 +121,7 @@ reassess, it records what you changed in `briefing.md` and applies it to the nex
 | `scripts/virality_scores.py` | Reads hook / viral / overall scores from the predictor's dashboard |
 | `scripts/make_spec.py` | Turns the timed shot list into a CapCut edit spec |
 | `scripts/captions.py` | Word timestamps → caption clips |
+| `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.agents/plugins/`, `gemini-extension.json` | Plugin and marketplace manifests for each assistant (all point at `skills/`) |
 
 ## Limits
 

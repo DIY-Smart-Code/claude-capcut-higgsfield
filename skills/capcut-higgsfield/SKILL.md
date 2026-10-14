@@ -140,7 +140,13 @@ Transition length is capped at 45 % of the shorter neighbouring clip.
 ### 10. Learn from the user's edits
 After the user changes the edit in CapCut and quits it: `capcut.py inspect "<name>" --json`, compare with
 `capcut-spec.json` (moved or trimmed clips, caption size/position, volumes, deleted shots) and write each
-change as a dated, concrete rule into `briefing.md`. Read `briefing.md` before every new spec.
+change as a dated, concrete rule into the user's briefing. Read it before every new spec.
+
+**Where the briefing lives:** `~/.claude/capcut-higgsfield/briefing.md` (Windows:
+`%USERPROFILE%\.claude\capcut-higgsfieldriefing.md`). If it does not exist yet, copy this skill's
+`briefing.md` there first. Never write learned rules into the skill's own `briefing.md`: a plugin update
+replaces the skill folder and the rules would be lost. Only if the home folder is not writable (e.g. a
+sandboxed app), fall back to the skill's copy and tell the user.
 
 ## Costs (measured 2026-10-13, Higgsfield Plus)
 | Item | Credits |
