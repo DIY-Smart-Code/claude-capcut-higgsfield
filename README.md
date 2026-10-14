@@ -2,6 +2,14 @@
 
 > ▶ **Watch it in action:** [Claude + Higgsfield MCP make a faceless video as an editable CapCut project](https://youtu.be/5x5oYTYn4e8)
 
+> [!WARNING]
+> **Early test version. Use at your own risk.** This is a first test of the skill. It does not cover
+> everything CapCut can do, and parts of it may not work on your setup. The skill writes straight into
+> CapCut's project files, so **back up your CapCut projects before you use it**: copy the whole drafts
+> folder, `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft` on Windows or `~/Movies/CapCut/User Data/Projects/com.lveditor.draft` on macOS.
+> The skill keeps its own backup of each project it changes (`capcut.py backup` / `restore`), but that
+> is no replacement for yours.
+
 A Claude skill that makes faceless videos with the **Higgsfield MCP** and hands them over as an
 **editable CapCut project**, not a flattened MP4.
 
@@ -125,6 +133,8 @@ reassess, it records what you changed in your briefing (`~/.claude/capcut-higgsf
 
 ## Limits
 
+- This is an early test version, not a finished tool. Expect gaps and rough edges, and please report
+  what breaks in the issues.
 - CapCut's project format is undocumented. This works with CapCut 9.5; after a CapCut update, build a test
   project and open it before trusting it with real work (10.x reportedly rejects tool-written drafts).
 - Filters, stickers and text animations are not written. Add them in CapCut.
