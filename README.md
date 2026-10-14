@@ -1,6 +1,8 @@
 # claude-capcut-higgsfield
 
-> ▶ **Watch it in action:** [Claude + Higgsfield MCP make a faceless video as an editable CapCut project](https://youtu.be/5x5oYTYn4e8)
+[![Watch: Claude + Higgsfield MCP make a faceless video as an editable CapCut project](https://img.youtube.com/vi/5x5oYTYn4e8/maxresdefault.jpg)](https://youtu.be/5x5oYTYn4e8)
+
+▶ **[Watch it in action on YouTube](https://youtu.be/5x5oYTYn4e8)**
 
 > [!WARNING]
 > **Early test version. Use at your own risk.** This is a first test of the skill. It does not cover
