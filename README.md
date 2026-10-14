@@ -1,5 +1,7 @@
 # claude-capcut-higgsfield
 
+> ▶ **Watch it in action:** [Claude + Higgsfield MCP make a faceless video as an editable CapCut project](https://youtu.be/5x5oYTYn4e8)
+
 A Claude skill that makes faceless videos with the **Higgsfield MCP** and hands them over as an
 **editable CapCut project**, not a flattened MP4.
 
