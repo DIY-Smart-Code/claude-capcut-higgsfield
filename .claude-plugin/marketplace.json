@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Claude plugins from DIY Smart Code.",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "plugins": [
     {
       "name": "capcut-higgsfield",
       "source": "./",
       "description": "Make a faceless video with the Higgsfield MCP and get it as an editable CapCut project.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "media",
       "homepage": "https://github.com/DIY-Smart-Code/claude-capcut-higgsfield",
       "displayName": "CapCut + Higgsfield"

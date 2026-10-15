@@ -1,6 +1,6 @@
 {
   "name": "capcut-higgsfield",
   "description": "Make a faceless video with the Higgsfield MCP and get it as an editable CapCut project: sourced script, voice-over, shots, motion clips, hook score and a real CapCut timeline.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "contextFileName": "GEMINI.md"
 }

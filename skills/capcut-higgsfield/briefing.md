@@ -1,6 +1,6 @@
 # Editing briefing: how this user likes their edits
 
-Claude reads this before writing a spec and updates it after every reassessment (SKILL.md step 9):
+Claude reads this before writing a spec and updates it after every reassessment (SKILL.md step 10):
 what the user changed by hand in CapCut becomes a concrete, dated rule here. Numbers, not adjectives.
 
 ## Defaults (until the user says otherwise)

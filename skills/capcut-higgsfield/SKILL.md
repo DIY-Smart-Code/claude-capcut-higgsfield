@@ -39,7 +39,8 @@ One shot per spoken line, one visual idea per shot, 3–8 s each.
 ```json
 {"title": "The First Computer Bug", "sources": ["https://..."],
  "shots": [{"id": 1, "line": "This moth is the most famous bug in computer history.",
-            "prompt": "Extreme close-up of a small grey moth caught between two brass relay contacts", "motion": true},
+            "prompt": "Extreme close-up of a small grey moth caught between two brass relay contacts", "motion": true,
+            "source": "https://..."},
            {"id": 2, "line": "...", "prompt": "...", "motion": false}]}
 ```
 - **Write for TTS:** numbers and years as words ("nineteen forty-seven"), no symbols, no em dashes, model
@@ -50,7 +51,12 @@ One shot per spoken line, one visual idea per shot, 3–8 s each.
   readable text (image models misspell; use "illegible handwriting" when paper must show writing).
 - Mark 1–4 shots `"motion": true`: the hook shot and the story's turning points. Motion costs ~50× a still.
 - A shot can reuse another shot's files: `"media": "005"`.
-Show the script to the user and get a yes before spending credits.
+- **Every line that states a fact gets a `source`** (the URL it comes from). Opinions and transitions don't.
+- **Approve the claims, not just the script.** Before any credits are spent, show the user a claims table:
+  shot id, the claim, its source, and the sentence from the source that supports it. Fix or cut anything the
+  user or the source doesn't back. Write each `prompt` only from approved claims: a wrong fact in the script
+  becomes wrong pictures in every shot built on it, and fixing the caption later doesn't fix those shots.
+Show the script and the claims table to the user and get a yes before spending credits.
 
 ### 3. Style lock
 1. `get_explainer_presets` → show 3–4 fitting presets (name + preview) and recommend one.
@@ -82,6 +88,9 @@ Seedance clips are 4–30 s at 7 credits/s (720p, no audio), so size each motion
   ```
 - Make a contact sheet and look at it. Regenerate any shot that breaks the style, shows garbled text or
   contradicts the line; fetch the new take under the same name (the old one moves to `media/rejected/`).
+- **A fact corrected after generation:** list every shot whose `line` or `prompt` depends on it (search
+  `shots.json` for the claim, the names and dates in it) and regenerate those shots, then re-voice and re-time
+  if the line changed. Tell the user which shots were redone and what it cost.
 - **Motion shots:** `generate_video`, model `seedance_2_5`, `mode: omni_reference`,
   `medias: [{value: <the shot's image job_id>, role: start_image}]`, `duration` ≥ the shot (min 4),
   `resolution: 720p`, `generate_audio: false` (cheaper; the voice-over is the only sound), prompt =
@@ -143,7 +152,7 @@ After the user changes the edit in CapCut and quits it: `capcut.py inspect "<nam
 change as a dated, concrete rule into the user's briefing. Read it before every new spec.
 
 **Where the briefing lives:** `~/.claude/capcut-higgsfield/briefing.md` (Windows:
-`%USERPROFILE%\.claude\capcut-higgsfieldriefing.md`). If it does not exist yet, copy this skill's
+`%USERPROFILE%\.claude\capcut-higgsfield\briefing.md`). If it does not exist yet, copy this skill's
 `briefing.md` there first. Never write learned rules into the skill's own `briefing.md`: a plugin update
 replaces the skill folder and the rules would be lost. Only if the home folder is not writable (e.g. a
 sandboxed app), fall back to the skill's copy and tell the user.
